@@ -55,7 +55,7 @@ INSERT INTO bookings (guest_id, room_id, check_in, check_out) VALUES
 -- b1
 select guest_name, phone
 from guests;
---b2
+-- b2
 select room_type
 from rooms
 group by room_type;
@@ -63,15 +63,15 @@ group by room_type;
 select room_type, price_per_day
 from rooms
 order by price_per_day asc;
---b4
+-- b4
 select room_id, room_type, price_per_day
 from rooms
 where price_per_day > 1000000;
---b5
+-- b5
 select booking_id,guest_id,room_id,check_in,check_out
 from bookings
 where year(check_in) = 2024;
---b6
+-- b6
 select room_type, count(*) as 'Số Phòng'
 from rooms
 group by room_type;
@@ -91,7 +91,7 @@ group by b.guest_id;
 select b.room_id as 'Mã Phòng', sum((b.check_out - b.check_in)* r.price_per_day) as 'Doanh thu mỗi phòng'
 from bookings b join rooms r on r.room_id = b.room_id
 group by b.room_id;
---b4
+-- b4
 select r.room_type as 'Loại Phòng', sum((b.check_out - b.check_in)* r.price_per_day) 'Tổng doanh thu'
 from bookings b join rooms r on r.room_id = b.room_id
 group by r.room_type;
