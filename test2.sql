@@ -51,45 +51,47 @@ INSERT INTO bookings (guest_id, room_id, check_in, check_out) VALUES
 (3, 6, '2024-05-01', '2024-05-06'), -- 5 ngày
 (4, 1, '2024-06-10', '2024-06-11'); -- 1 ngày
 
--- P1
+-- Phần 1
+-- b1
 select guest_name, phone
 from guests;
-
+--b2
 select room_type
 from rooms
 group by room_type;
-
+-- b3
 select room_type, price_per_day
 from rooms
 order by price_per_day asc;
-
+--b4
 select room_id, room_type, price_per_day
 from rooms
 where price_per_day > 1000000;
-
+--b5
 select booking_id,guest_id,room_id,check_in,check_out
 from bookings
 where year(check_in) = 2024;
-
+--b6
 select room_type, count(*) as 'Số Phòng'
 from rooms
 group by room_type;
 
--- P2
+-- Phần 2
+-- b1
 select g.guest_name,r.room_type,b.check_in
 from bookings b
 join guests g on b.guest_id = g.guest_id
 join rooms r on b.room_id = r.room_id;
-
+--b2
 select g.guest_name,count(b.booking_id)
 from guests g join bookings b on g.guest_id = b.guest_id
 			  join rooms r on r.room_id = b.room_id
 group by b.guest_id;
-
+-- b3
 select b.room_id as 'Mã Phòng', sum((b.check_out - b.check_in)* r.price_per_day) as 'Doanh thu mỗi phòng'
 from bookings b join rooms r on r.room_id = b.room_id
 group by b.room_id;
-
+--b4
 select r.room_type as 'Loại Phòng', sum((b.check_out - b.check_in)* r.price_per_day) 'Tổng doanh thu'
 from bookings b join rooms r on r.room_id = b.room_id
 group by r.room_type;
